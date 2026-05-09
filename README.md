@@ -17,13 +17,13 @@
 > per question. Each bullet should be 1-2 sentences max.
 
 - **Why a single shortest-path run from S is not enough:**
-  _Your answer here._
+  A single shortest-path run from S is not enough because there are distinct locations where the Torchbearer must visit before going to the exit. The cost to each relic chamber and the relic chamber order must be determined.
 
 - **What decision remains after all inter-location costs are known:**
-  _Your answer here._
+  After all the inter-location costs are known, the least fuel-cost route between relic chambers must be decided.
 
 - **Why this requires a search over orders (one sentence):**
-  _Your answer here._
+  This requires a search over orders because the least-cost route must be determined among different valid relic chamber routes. 
 
 ---
 

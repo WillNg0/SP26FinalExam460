@@ -34,7 +34,12 @@ def explain_problem():
 
     TODO
     """
-    return "TODO"
+    str = '''
+    - A single shortest-path run from S is not enough because there are distinct locations where the Torchbearer must visit before going to the exit. The cost to each relic chamber and the relic chamber order must be determined.
+    - After all the inter-location costs are known, the least fuel-cost route between relic chambers must be decided.
+    - This requires a search over orders because the least-cost route must be determined among different valid relic chamber routes. 
+    '''
+    return str
 
 
 # =============================================================================
