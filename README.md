@@ -73,29 +73,29 @@
 > Do not copy the invariant text from the spec.
 
 - **For nodes already finalized (in S):**
-  _Your answer here._
+  For every node v that has already been finalized in S, dist[v] gives the least cost path from x to v and no better paths exist.
 
 - **For nodes not yet finalized (not in S):**
-  _Your answer here._
+  For the nodes u that have not been finalized in S, dist[u] gives the current least cost path from x to u based on the finalized nodes in S. 
 
 ### Part 3b: Why Each Phase Holds
 
 > One to two bullets per phase. Maintenance must mention nonnegative edge weights.
 
 - **Initialization : why the invariant holds before iteration 1:**
-  _Your answer here._
+  At the start, the source node is initialized with distance 0 and no other nodes have been processed yet, so their distances are initialized to infinity. 
 
 - **Maintenance : why finalizing the min-dist node is always correct:**
-  _Your answer here._
+  The graph consists of nonnegative edge weights, meaning that a better path cannot be discovered after a path has been finalized with the minimum distance.
 
 - **Termination : what the invariant guarantees when the algorithm ends:**
-  _Your answer here._
+  The shortest path from the source node to all reachable nodes have been discovered and finalized. 
 
 ### Part 3c: Why This Matters for the Route Planner
 
 > One sentence connecting correct distances to correct routing decisions.
 
-_Your answer here._
+Since Dijkstra produces the correct shortest distance from the source node, an optimal route can be decided by seeing which route produces the minimum cost among different valid routes. 
 
 ---
 

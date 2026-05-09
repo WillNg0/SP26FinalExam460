@@ -19,12 +19,12 @@ I will implement the questions in order from part 1 to part 6, doing the README 
 
 ---
 
-## Entry 2 – [Date]: [Short description]
+## Entry 2 – [5/9/2026]: [Short description]
 
 > Required. At least one entry must describe a bug, wrong assumption, or design change
 > you encountered. Describe what went wrong and how you resolved it.
 
-_Your entry here._
+Initially, when I read the problem scenario, I thought that the problem involved two different algorithms to compute the inter-location costs and determine an optimal order to visit the relic chambers. While doing Part 1 and 2, I realized that the problem actually involved using Dijkstra over each source node, and then finding the optimal order using the computed distances. 
 
 ---
 
@@ -51,7 +51,7 @@ _Your entry here._
 |---|---|
 | Part 1: Problem Analysis | 45 minutes |
 | Part 2: Precomputation Design | 4 hours |
-| Part 3: Algorithm Correctness | |
+| Part 3: Algorithm Correctness | 1 hour |
 | Part 4: Search Design | |
 | Part 5: State and Search Space | |
 | Part 6: Pruning | |

@@ -34,12 +34,12 @@ def explain_problem():
 
     TODO
     """
-    str = '''
+    ans = '''
     - A single shortest-path run from S is not enough because there are distinct locations where the Torchbearer must visit before going to the exit. The relic chamber order must be determined to acquire the least cost route.
     - After all the inter-location costs are known, the least fuel-cost route between relic chambers must be decided.
     - This requires a search over orders because the least-cost route must be determined among different valid relic chamber routes. 
     '''
-    return str
+    return ans
 
 
 # =============================================================================
@@ -149,7 +149,15 @@ def dijkstra_invariant_check():
 
     TODO
     """
-    return "TODO"
+    ans = '''
+    - For every node v that has already been finalized in S, dist[v] gives the least cost path from x to v and no better paths exist.
+    - For the nodes u that have not been finalized in S, dist[u] gives the current least cost path from x to u based on the finalized nodes in S. 
+    - Initialization: At the start, the source node is initialized with distance 0 and no other nodes have been processed yet, so their distances are initialized to infinity. 
+    - Maintenance: The graph consists of nonnegative edge weights, meaning that a better path cannot be discovered after a path has been finalized with the minimum distance.
+    - Termination: The shortest path from the source node to all reachable nodes have been discovered and finalized. 
+    - Since Dijkstra produces the correct shortest distance from the source node, an optimal route can be decided by seeing which route produces the minimum cost among different valid routes. 
+    '''
+    return ans
 
 
 # =============================================================================
