@@ -35,7 +35,7 @@ def explain_problem():
     TODO
     """
     str = '''
-    - A single shortest-path run from S is not enough because there are distinct locations where the Torchbearer must visit before going to the exit. The cost to each relic chamber and the relic chamber order must be determined.
+    - A single shortest-path run from S is not enough because there are distinct locations where the Torchbearer must visit before going to the exit. The relic chamber order must be determined to acquire the least cost route.
     - After all the inter-location costs are known, the least fuel-cost route between relic chambers must be decided.
     - This requires a search over orders because the least-cost route must be determined among different valid relic chamber routes. 
     '''
@@ -61,7 +61,9 @@ def select_sources(spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    nodes = [spawn, exit_node]
+    nodes.extend(relics)
+    return nodes
 
 
 def run_dijkstra(graph, source):
@@ -80,7 +82,27 @@ def run_dijkstra(graph, source):
 
     TODO
     """
-    pass
+    dist = {}
+    pq = []
+    
+    for v in graph:
+        dist[v] = float('inf')
+    dist[source] = 0
+
+    heapq.heappush(pq, (0, source))
+
+    while pq:
+        cost, node = heapq.heappop(pq)
+
+        if cost > dist[node]:
+            continue
+
+        for neighbor, c in graph[node]:
+            if dist[node] + c < dist[neighbor]:
+                dist[neighbor] = dist[node] + c
+                heapq.heappush(pq, (dist[neighbor], neighbor))
+
+    return dist
 
 
 def precompute_distances(graph, spawn, relics, exit_node):
@@ -100,7 +122,17 @@ def precompute_distances(graph, spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    p_d = {}
+    
+    p_d[spawn] = run_dijkstra(graph, spawn)        
+
+    for source in relics:
+        p_d[source] = run_dijkstra(graph, source)
+
+    p_d[exit_node] = run_dijkstra(graph, exit_node)
+
+    return p_d
+
 
 
 # =============================================================================

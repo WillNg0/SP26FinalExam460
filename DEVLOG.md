@@ -1,7 +1,7 @@
 # Development Log – The Torchbearer
 
-**Student Name:** ___________________________
-**Student ID:** ___________________________
+**Student Name:** William Ngo
+**Student ID:** 130818451
 
 > Instructions: Write at least four dated entries. Required entry types are marked below.
 > Two to five sentences per entry is sufficient. Write entries as you go, not all in one
@@ -10,12 +10,12 @@
 
 ---
 
-## Entry 1 – [Date]: Initial Plan
+## Entry 1 – [5/8/2026]: Initial Plan
 
 > Required. Write this before writing any code. Describe your plan: what you will
 > implement first, what parts you expect to be difficult, and how you plan to test.
 
-_Your entry here._
+I will implement the questions in order from part 1 to part 6, doing the README part first and then implementing the corresponding torchbearer.py question after. The parts that I expect to be difficult is trying to understand the context itself and then matching the implementation to the context. Since I have the idea that this is not a simple Dijkstra's algorithm problem, I think another difficulty will be trying to modify the algorithm to meet this problem's needs. I plan to test by running the provided tests first, and then writing my own test cases that concern edge cases and other worries that I may have.
 
 ---
 
@@ -49,8 +49,8 @@ _Your entry here._
 
 | Part | Estimated Hours |
 |---|---|
-| Part 1: Problem Analysis | |
-| Part 2: Precomputation Design | |
+| Part 1: Problem Analysis | 45 minutes |
+| Part 2: Precomputation Design | 4 hours |
 | Part 3: Algorithm Correctness | |
 | Part 4: Search Design | |
 | Part 5: State and Search Space | |

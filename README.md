@@ -17,7 +17,7 @@
 > per question. Each bullet should be 1-2 sentences max.
 
 - **Why a single shortest-path run from S is not enough:**
-  A single shortest-path run from S is not enough because there are distinct locations where the Torchbearer must visit before going to the exit. The cost to each relic chamber and the relic chamber order must be determined.
+  A single shortest-path run from S is not enough because there are distinct locations where the Torchbearer must visit before going to the exit. The relic chamber order must be determined to acquire the least cost route. 
 
 - **What decision remains after all inter-location costs are known:**
   After all the inter-location costs are known, the least fuel-cost route between relic chambers must be decided.
@@ -35,8 +35,9 @@
 
 | Source Node Type | Why it is a source |
 |---|---|
-| _node type_ | _one-line reason_ |
-| _node type_ | _one-line reason_ |
+| - Entrance node | Node where the Torchbearer starts |
+| - Relic chamber node | Compute least cost to every other location after reaching a chamber |
+| - Exit node | Compute the lowest cost for each location to reach the exit |
 
 ### Part 2b: Distance Storage
 
@@ -44,20 +45,20 @@
 
 | Property | Your answer |
 |---|---|
-| Data structure name | |
-| What the keys represent | |
-| What the values represent | |
-| Lookup time complexity | |
-| Why O(1) lookup is possible | |
+| Data structure name | Dictionary |
+| What the keys represent | Dungeon Locations |
+| What the values represent | Cheapest distance from source node to every other location |
+| Lookup time complexity | O(1) |
+| Why O(1) lookup is possible | The hash function allows for constant time look up for each dungeon |
 
 ### Part 2c: Precomputation Complexity
 
 > State the total complexity and show the arithmetic. Two to three lines max.
 
-- **Number of Dijkstra runs:** _your answer_
-- **Cost per run:** _your answer_
-- **Total complexity:** _your answer_
-- **Justification (one line):** _your answer_
+- **Number of Dijkstra runs:** Number of runs equal k plus the start node and exit node, which is O(k)
+- **Cost per run:** O(m log n)
+- **Total complexity:** O(k) * O(m log n) = O(k*m log n)
+- **Justification (one line):** Since the cost per run is O(m log n) and we have to run Dijkstra O(k) times, we have to multiply their time complexities for the total complexity. 
 
 ---
 
