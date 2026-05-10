@@ -106,17 +106,23 @@ Since Dijkstra produces the correct shortest distance from the source node, an o
 > State the failure mode. Then give a concrete counter-example using specific node names
 > or costs (you may use the illustration example from the spec). Three to five bullets.
 
-- **The failure mode:** _Your answer here._
-- **Counter-example setup:** _Your answer here._
-- **What greedy picks:** _Your answer here._
-- **What optimal picks:** _Your answer here._
-- **Why greedy loses:** _Your answer here._
+- **The failure mode:** Picking the cheapest next node available
+- **Counter-example setup:** 
+| From \ To | B   | C   | D   | T   |
+|-----------|-----|-----|-----|-----|
+| S         | 2   | 3   | 1   | --  |
+| B         | --  | 1   | 100 | 2   |
+| C         | 3   | --  | 3   | 2   |
+| D         | 3   | 2   | --  | 100 |
+- **What greedy picks:** S -> D -> C -> B -> T &nbsp; total fuel = 1 + 2 + 3 + 2 = **8**
+- **What optimal picks:** S -> D -> B -> C -> T &nbsp; total fuel = 1 + 3 + 1 + 2 = **7**
+- **Why greedy loses:** Greedy chooses the cheapest option available, but does not consider how its decisions can affect later paths. Later paths can be cheaper than current cheapest path. 
 
 ### What the Algorithm Must Explore
 
 > One bullet. Must use the word "order."
 
-- _Your answer here._
+- The algorithm must explore the order to visit the relic chambers that results in the minimum total fuel cost. 
 
 ---
 

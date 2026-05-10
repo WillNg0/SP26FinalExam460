@@ -174,6 +174,20 @@ def explain_search():
 
     TODO
     """
+    ans = '''
+    - The failure mode: Picking the cheapest next node available
+    - Counter-example setup:
+     | From \ To | B   | C   | D   | T   |
+     |-----------|-----|-----|-----|-----|
+     | S         | 2   | 3   | 1   | --  |
+     | B         | --  | 1   | 100 | 2   |
+     | C         | 3   | --  | 3   | 2   |
+     | D         | 3   | 2   | --  | 100 |
+    - What greedy picks: S -> D -> C -> B -> T \t total fuel = 1 + 2 + 3 + 2 = 8
+    - What optimal picks: S -> D -> B -> C -> T \t total fuel = 1 + 3 + 1 + 2 = 7
+    - Why greedy loses: Greedy chooses the cheapest option available, but does not consider how its decisions can affect later paths. Later paths can be cheaper than current cheapest path.
+    - The algorithm must explore the order to visit the relic chambers that results in the minimum total fuel cost. 
+    '''
     return "TODO"
 
 
