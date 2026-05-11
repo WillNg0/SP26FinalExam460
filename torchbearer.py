@@ -2,8 +2,8 @@
 CS 460 – Algorithms: Final Programming Assignment
 The Torchbearer
 
-Student Name: ___________________________
-Student ID:   ___________________________
+Student Name: William Ngo
+Student ID:   130818451
 
 INSTRUCTIONS
 ------------
@@ -188,7 +188,7 @@ def explain_search():
     - Why greedy loses: Greedy chooses the cheapest option available, but does not consider how its decisions can affect later paths. Later paths can be cheaper than current cheapest path.
     - The algorithm must explore the order to visit the relic chambers that results in the minimum total fuel cost. 
     '''
-    return "TODO"
+    return ans
 
 
 # =============================================================================

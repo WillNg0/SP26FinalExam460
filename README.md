@@ -1,7 +1,7 @@
 # The Torchbearer
 
-**Student Name:** ___________________________
-**Student ID:** ___________________________
+**Student Name:** William Ngo
+**Student ID:** 130818451
 **Course:** CS 460 – Algorithms | Spring 2026
 
 > This README is your project documentation. Write it the way a developer would document
@@ -135,9 +135,9 @@ Since Dijkstra produces the correct shortest distance from the source node, an o
 
 | Component | Variable name in code | Data type | Description |
 |---|---|---|---|
-| Current location | | | |
-| Relics already collected | | | |
-| Fuel cost so far | | | |
+| Current location | curr_loc | string | Current location that the Torchbearer is at |
+| Relics already collected | coll_relics | set | Relics that have been collected already |
+| Fuel cost so far | fuel_so_far | int | The total fuel cost used so far|
 
 ### Part 5b: Data Structure for Visited Relics
 
@@ -145,18 +145,18 @@ Since Dijkstra produces the correct shortest distance from the source node, an o
 
 | Property | Your answer |
 |---|---|
-| Data structure chosen | |
-| Operation: check if relic already collected | Time complexity: |
-| Operation: mark a relic as collected | Time complexity: |
-| Operation: unmark a relic (backtrack) | Time complexity: |
-| Why this structure fits | |
+| Data structure chosen | set |
+| Operation: check if relic already collected | Time complexity: O(1) average case |
+| Operation: mark a relic as collected | Time complexity: O(1) average case |
+| Operation: unmark a relic (backtrack) | Time complexity: O(1) average case |
+| Why this structure fits | Allows the Torchbearer to avoid revisiting relics and backtrack in near constant time |
 
 ### Part 5c: Worst-Case Search Space
 
 > Two bullets.
 
-- **Worst-case number of orders considered:** _Your answer (in terms of k)._
-- **Why:** _One-line justification._
+- **Worst-case number of orders considered:** O(k!)
+- **Why:** The algorithm may have to consider every permutation of relic chambers to visit for the minimum total fuel cost.  
 
 ---
 
@@ -166,23 +166,24 @@ Since Dijkstra produces the correct shortest distance from the source node, an o
 
 > Three bullets.
 
-- **What is tracked:** _Your answer here._
-- **When it is used:** _Your answer here._
-- **What it allows the algorithm to skip:** _Your answer here._
+- **What is tracked:** Cost of the best route so far 
+- **When it is used:** When the explored path is worse than the current best
+- **What it allows the algorithm to skip:** Routes that are worse than current best 
 
 ### Part 6b: Lower Bound Estimation
 
 > Three bullets.
 
-- **What information is available at the current state:** _Your answer here._
-- **What the lower bound accounts for:** _Your answer here._
-- **Why it never overestimates:** _Your answer here._
+- **What information is available at the current state:** The current location, total fuel cost at that point, and which relics have been visited
+- **What the lower bound accounts for:** The minimum possible total cost to continue exploring from the current state
+- **Why it never overestimates:** It is computed using the cost that the torchbearer has used so far and the lowest available cost available going forward
 
 ### Part 6c: Pruning Correctness
 
 > One to two bullets. Explain why pruning is safe.
 
-- _Your answer here._
+- The best-so-far is an actual cost for a complete and valid route the Torchbearer has explored.
+- If the current branch's lower bound is greater than the best-so-far, the current branch can never beat it, so pruning is safe. 
 
 ---
 
@@ -190,4 +191,4 @@ Since Dijkstra produces the correct shortest distance from the source node, an o
 
 > Bullet list. If none beyond lecture notes, write that.
 
-- _Your references here._
+- https://wiki.python.org/moin/TimeComplexity 
