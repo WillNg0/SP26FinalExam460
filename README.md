@@ -73,7 +73,7 @@
 > Do not copy the invariant text from the spec.
 
 - **For nodes already finalized (in S):**
-  For every node v that has already been finalized in S, dist[v] gives the least cost path from x to v and no better paths exist.
+  For every node v that has already been finalized in S, dist[v] gives the least cost path from x to v, and no better paths exist.
 
 - **For nodes not yet finalized (not in S):**
   For the nodes u that have not been finalized in S, dist[u] gives the current least cost path from x to u based on the finalized nodes in S. 
@@ -83,13 +83,13 @@
 > One to two bullets per phase. Maintenance must mention nonnegative edge weights.
 
 - **Initialization : why the invariant holds before iteration 1:**
-  At the start, the source node is initialized with distance 0 and no other nodes have been processed yet, so their distances are initialized to infinity. 
+  At the start, the source node is initialized with distance 0, and no other nodes have been processed yet, so their distances are initialized to infinity. 
 
 - **Maintenance : why finalizing the min-dist node is always correct:**
   The graph consists of nonnegative edge weights, meaning that a better path cannot be discovered after a path has been finalized with the minimum distance.
 
 - **Termination : what the invariant guarantees when the algorithm ends:**
-  The shortest path from the source node to all reachable nodes have been discovered and finalized. 
+  The shortest path from the source node to all reachable nodes has been discovered and finalized. 
 
 ### Part 3c: Why This Matters for the Route Planner
 
@@ -114,8 +114,8 @@ Since Dijkstra produces the correct shortest distance from the source node, an o
 | B         | --  | 1   | 100 | 2   |
 | C         | 3   | --  | 3   | 2   |
 | D         | 3   | 2   | --  | 100 |
-- **What greedy picks:** S -> D -> C -> B -> T &nbsp; total fuel = 1 + 2 + 3 + 2 = **8**
-- **What optimal picks:** S -> D -> B -> C -> T &nbsp; total fuel = 1 + 3 + 1 + 2 = **7**
+- **What greedy picks:** S -> D -> C -> B -> T total fuel = 1 + 2 + 3 + 2 = **8**
+- **What optimal picks:** S -> D -> B -> C -> T total fuel = 1 + 3 + 1 + 2 = **7**
 - **Why greedy loses:** Greedy chooses the cheapest option available, but does not consider how its decisions can affect later paths. Later paths can be cheaper than current cheapest path. 
 
 ### What the Algorithm Must Explore
@@ -135,9 +135,9 @@ Since Dijkstra produces the correct shortest distance from the source node, an o
 
 | Component | Variable name in code | Data type | Description |
 |---|---|---|---|
-| Current location | curr_loc | string | Current location that the Torchbearer is at |
-| Relics already collected | coll_relics | set | Relics that have been collected already |
-| Fuel cost so far | fuel_so_far | int | The total fuel cost used so far|
+| Current location | current_loc | node | Current location that the Torchbearer is at |
+| Relics already collected | relics_remaining | set | Relics that still need to be collected |
+| Fuel cost so far | cost_so_far | float | The total fuel cost used so far |
 
 ### Part 5b: Data Structure for Visited Relics
 

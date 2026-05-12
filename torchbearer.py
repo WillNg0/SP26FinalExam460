@@ -35,9 +35,9 @@ def explain_problem():
     TODO
     """
     ans = '''
-    - A single shortest-path run from S is not enough because there are distinct locations where the Torchbearer must visit before going to the exit. The relic chamber order must be determined to acquire the least cost route.
+    - A single shortest-path run from S is not enough because it would only find the shortest path from one location to all other locations. It cannot decide which order to visit the relic chambers that results in the least total fuel cost. 
     - After all the inter-location costs are known, the least fuel-cost route between relic chambers must be decided.
-    - This requires a search over orders because the least-cost route must be determined among different valid relic chamber routes. 
+    - This requires a search over orders because the least-cost route must be determined among different valid relic chamber routes.
     '''
     return ans
 
@@ -150,11 +150,11 @@ def dijkstra_invariant_check():
     TODO
     """
     ans = '''
-    - For every node v that has already been finalized in S, dist[v] gives the least cost path from x to v and no better paths exist.
+    - For every node v that has already been finalized in S, dist[v] gives the least cost path from x to v, and no better paths exist.
     - For the nodes u that have not been finalized in S, dist[u] gives the current least cost path from x to u based on the finalized nodes in S. 
-    - Initialization: At the start, the source node is initialized with distance 0 and no other nodes have been processed yet, so their distances are initialized to infinity. 
+    - Initialization: At the start, the source node is initialized with distance 0, and no other nodes have been processed yet, so their distances are initialized to infinity.
     - Maintenance: The graph consists of nonnegative edge weights, meaning that a better path cannot be discovered after a path has been finalized with the minimum distance.
-    - Termination: The shortest path from the source node to all reachable nodes have been discovered and finalized. 
+    - Termination: The shortest path from the source node to all reachable nodes has been discovered and finalized. 
     - Since Dijkstra produces the correct shortest distance from the source node, an optimal route can be decided by seeing which route produces the minimum cost among different valid routes. 
     '''
     return ans
@@ -177,14 +177,14 @@ def explain_search():
     ans = '''
     - The failure mode: Picking the cheapest next node available
     - Counter-example setup:
-     | From \ To | B   | C   | D   | T   |
+     | From \\ To | B   | C   | D   | T   |
      |-----------|-----|-----|-----|-----|
      | S         | 2   | 3   | 1   | --  |
      | B         | --  | 1   | 100 | 2   |
      | C         | 3   | --  | 3   | 2   |
      | D         | 3   | 2   | --  | 100 |
-    - What greedy picks: S -> D -> C -> B -> T \t total fuel = 1 + 2 + 3 + 2 = 8
-    - What optimal picks: S -> D -> B -> C -> T \t total fuel = 1 + 3 + 1 + 2 = 7
+    - What greedy picks: S -> D -> C -> B -> T total fuel = 1 + 2 + 3 + 2 = 8
+    - What optimal picks: S -> D -> B -> C -> T total fuel = 1 + 3 + 1 + 2 = 7
     - Why greedy loses: Greedy chooses the cheapest option available, but does not consider how its decisions can affect later paths. Later paths can be cheaper than current cheapest path.
     - The algorithm must explore the order to visit the relic chambers that results in the minimum total fuel cost. 
     '''
@@ -215,7 +215,15 @@ def find_optimal_route(dist_table, spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    relics_remaining = set(relics)
+    cost_so_far = 0
+    current_visit_order = []
+
+    best_res = [float('inf'), []]
+
+    _explore(dist_table, spawn, relics_remaining, current_visit_order, cost_so_far, exit_node, best_res)
+
+    return tuple(best_res)
 
 
 def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
@@ -247,7 +255,32 @@ def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
     explaining why it is safe (cannot skip the optimal solution).
     This comment is graded.
     """
-    pass
+    if len(relics_remaining) == 0:
+        last_step = dist_table[current_loc][exit_node]
+        if(last_step != float('inf')):
+            cost_so_far += last_step
+            if cost_so_far < best[0]:
+                best[0] = cost_so_far
+                best[1] = relics_visited_order.copy()
+        return
+    
+    # Pruning condition is safe because if the cost_so_far is already greater than the best, 
+    # it can never beat the best solution since the graph contains only nonnegative edges
+    if cost_so_far >= best[0]:
+        return
+    
+    relics_remaining_copy = relics_remaining.copy()
+    for choice in relics_remaining_copy:
+        cost = dist_table[current_loc][choice]
+        if cost != float('inf'):
+            relics_visited_order.append(choice)
+            cost_so_far += cost
+            relics_remaining.remove(choice)
+            _explore(dist_table, choice, relics_remaining, relics_visited_order, 
+                    cost_so_far, exit_node, best)
+            relics_visited_order.pop()
+            cost_so_far -= cost
+            relics_remaining.add(choice)        
 
 
 # =============================================================================
@@ -271,7 +304,8 @@ def solve(graph, spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    dist_table = precompute_distances(graph, spawn, relics, exit_node)
+    return find_optimal_route(dist_table, spawn, relics, exit_node)
 
 
 # =============================================================================
