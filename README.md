@@ -147,6 +147,6 @@ Since Dijkstra produces the correct shortest distance from the source node, an o
 
 ## References
 
-- https://wiki.python.org/moin/TimeComplexity 
-- https://www.geeksforgeeks.org/python/python-lists/
-- https://www.geeksforgeeks.org/python/sets-in-python/
+- https://wiki.python.org/moin/TimeComplexity - For Part 5b, verified result using documentation
+- https://www.geeksforgeeks.org/python/heap-queue-or-heapq-in-python/ - For implementation of Dijkstra's
+- https://www.geeksforgeeks.org/python/sets-in-python/ - For implementation of Part 5 + 6
