@@ -4,17 +4,9 @@
 **Student ID:** 130818451
 **Course:** CS 460 – Algorithms | Spring 2026
 
-> This README is your project documentation. Write it the way a developer would document
-> their design decisions , bullet points, brief justifications, and concrete examples where
-> required. You are not writing an essay. You are explaining what you built and why you built
-> it that way. Delete all blockquotes like this one before submitting.
-
 ---
 
 ## Part 1: Problem Analysis
-
-> Document why this problem is not just a shortest-path problem. Three bullet points, one
-> per question. Each bullet should be 1-2 sentences max.
 
 - **Why a single shortest-path run from S is not enough:**
   A single shortest-path run from S is not enough because it would only find the shortest path from one location to all other locations. It cannot decide which order to visit the relic chambers that results in the least total fuel cost. 
@@ -31,8 +23,6 @@
 
 ### Part 2a: Source Selection
 
-> List the source node types as a bullet list. For each, one-line reason.
-
 | Source Node Type | Why it is a source |
 |---|---|
 | - Entrance node | Node where the Torchbearer starts |
@@ -40,8 +30,6 @@
 | - Exit node | Compute the lowest cost for each location to reach the exit |
 
 ### Part 2b: Distance Storage
-
-> Fill in the table. No prose required.
 
 | Property | Your answer |
 |---|---|
@@ -53,8 +41,6 @@
 
 ### Part 2c: Precomputation Complexity
 
-> State the total complexity and show the arithmetic. Two to three lines max.
-
 - **Number of Dijkstra runs:** Number of runs equal k plus the start node and exit node, which is O(k)
 - **Cost per run:** O(m log n)
 - **Total complexity:** O(k) * O(m log n) = O(k*m log n)
@@ -64,13 +50,7 @@
 
 ## Part 3: Algorithm Correctness
 
-> Document your understanding of why Dijkstra produces correct distances.
-> Bullet points and short sentences throughout. No paragraphs.
-
 ### Part 3a: What the Invariant Means
-
-> Two bullets: one for finalized nodes, one for non-finalized nodes.
-> Do not copy the invariant text from the spec.
 
 - **For nodes already finalized (in S):**
   For every node v that has already been finalized in S, dist[v] gives the least cost path from x to v, and no better paths exist.
@@ -79,8 +59,6 @@
   For the nodes u that have not been finalized in S, dist[u] gives the current least cost path from x to u based on the finalized nodes in S. 
 
 ### Part 3b: Why Each Phase Holds
-
-> One to two bullets per phase. Maintenance must mention nonnegative edge weights.
 
 - **Initialization : why the invariant holds before iteration 1:**
   At the start, the source node is initialized with distance 0, and no other nodes have been processed yet, so their distances are initialized to infinity. 
@@ -93,8 +71,6 @@
 
 ### Part 3c: Why This Matters for the Route Planner
 
-> One sentence connecting correct distances to correct routing decisions.
-
 Since Dijkstra produces the correct shortest distance from the source node, an optimal route can be decided by seeing which route produces the minimum cost among different valid routes. 
 
 ---
@@ -102,9 +78,6 @@ Since Dijkstra produces the correct shortest distance from the source node, an o
 ## Part 4: Search Design
 
 ### Why Greedy Fails
-
-> State the failure mode. Then give a concrete counter-example using specific node names
-> or costs (you may use the illustration example from the spec). Three to five bullets.
 
 - **The failure mode:** Picking the cheapest next node available
 - **Counter-example setup:** 
@@ -120,8 +93,6 @@ Since Dijkstra produces the correct shortest distance from the source node, an o
 
 ### What the Algorithm Must Explore
 
-> One bullet. Must use the word "order."
-
 - The algorithm must explore the order to visit the relic chambers that results in the minimum total fuel cost. 
 
 ---
@@ -130,9 +101,6 @@ Since Dijkstra produces the correct shortest distance from the source node, an o
 
 ### Part 5a: State Representation
 
-> Document the three components of your search state as a table.
-> Variable names here must match exactly what you use in torchbearer.py.
-
 | Component | Variable name in code | Data type | Description |
 |---|---|---|---|
 | Current location | current_loc | node | Current location that the Torchbearer is at |
@@ -140,8 +108,6 @@ Since Dijkstra produces the correct shortest distance from the source node, an o
 | Fuel cost so far | cost_so_far | float | The total fuel cost used so far |
 
 ### Part 5b: Data Structure for Visited Relics
-
-> Fill in the table.
 
 | Property | Your answer |
 |---|---|
@@ -153,8 +119,6 @@ Since Dijkstra produces the correct shortest distance from the source node, an o
 
 ### Part 5c: Worst-Case Search Space
 
-> Two bullets.
-
 - **Worst-case number of orders considered:** O(k!)
 - **Why:** The algorithm may have to consider every permutation of relic chambers to visit for the minimum total fuel cost.  
 
@@ -164,23 +128,17 @@ Since Dijkstra produces the correct shortest distance from the source node, an o
 
 ### Part 6a: Best-So-Far Tracking
 
-> Three bullets.
-
 - **What is tracked:** Cost of the best route so far 
 - **When it is used:** When the explored path is worse than the current best
 - **What it allows the algorithm to skip:** Routes that are worse than current best 
 
 ### Part 6b: Lower Bound Estimation
 
-> Three bullets.
-
 - **What information is available at the current state:** The current location, total fuel cost at that point, and which relics have been visited
 - **What the lower bound accounts for:** The minimum possible total cost to continue exploring from the current state
 - **Why it never overestimates:** It is computed using the cost that the torchbearer has used so far and the lowest available cost available going forward
 
 ### Part 6c: Pruning Correctness
-
-> One to two bullets. Explain why pruning is safe.
 
 - The best-so-far is an actual cost for a complete and valid route the Torchbearer has explored.
 - If the current branch's lower bound is greater than the best-so-far, the current branch can never beat it, so pruning is safe. 
@@ -189,6 +147,6 @@ Since Dijkstra produces the correct shortest distance from the source node, an o
 
 ## References
 
-> Bullet list. If none beyond lecture notes, write that.
-
 - https://wiki.python.org/moin/TimeComplexity 
+- https://www.geeksforgeeks.org/python/python-lists/
+- https://www.geeksforgeeks.org/python/sets-in-python/
